@@ -8,4 +8,13 @@ class PrototypesController < ApplicationController
     @prototype = User.new
   end
 
+  def create
+    User.create(prototype_params)
+  end
+
+  private
+  def prototype_params
+    params.require(:prototype).permit(:image).merge(user_id: current_user.id)
+  end
+
 end
